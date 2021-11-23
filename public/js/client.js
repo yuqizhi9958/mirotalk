@@ -26,7 +26,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 'use strict'; // https://www.w3schools.com/js/js_strict.asp
 
 const isHttps = false; // must be the same to server.js isHttps
-const signalingServerPort = 3000; // must be the same to server.js PORT
+const signalingServerPort = 443; // must be the same to server.js PORT
 const signalingServer = getSignalingServer();
 const roomId = getRoomId();
 const peerInfo = getPeerInfo();
@@ -124,7 +124,7 @@ let initAudioBtn;
 let initVideoBtn;
 // buttons bar
 let buttonsBar;
-let shareRoomBtn;
+// let shareRoomBtn;
 let audioBtn;
 let videoBtn;
 let swapCameraBtn;
@@ -252,7 +252,7 @@ function getHtmlElementsById() {
     myVideoAvatarImage = getId('myVideoAvatarImage');
     // buttons Bar
     buttonsBar = getId('buttonsBar');
-    shareRoomBtn = getId('shareRoomBtn');
+    // shareRoomBtn = getId('shareRoomBtn');
     audioBtn = getId('audioBtn');
     videoBtn = getId('videoBtn');
     swapCameraBtn = getId('swapCameraBtn');
@@ -264,7 +264,7 @@ function getHtmlElementsById() {
     fileShareBtn = getId('fileShareBtn');
     myHandBtn = getId('myHandBtn');
     mySettingsBtn = getId('mySettingsBtn');
-    aboutBtn = getId('aboutBtn');
+    // aboutBtn = getId('aboutBtn');
     leaveRoomBtn = getId('leaveRoomBtn');
     // chat Room elements
     msgerDraggable = getId('msgerDraggable');
@@ -353,12 +353,12 @@ function setButtonsTitle() {
     if (isMobileDevice) return;
 
     // left buttons
-    tippy(shareRoomBtn, {
-        content: 'Invite people to join',
-        placement: 'right-start',
-    });
+    // tippy(shareRoomBtn, {
+    //     content: 'Invite people to join',
+    //     placement: 'right-start',
+    // });
     tippy(audioBtn, {
-        content: 'Click to audio OFF',
+        content: '单击以关闭音频',
         placement: 'right-start',
     });
     tippy(videoBtn, {
@@ -397,10 +397,10 @@ function setButtonsTitle() {
         content: 'Show settings',
         placement: 'right-start',
     });
-    tippy(aboutBtn, {
-        content: 'Show about',
-        placement: 'right-start',
-    });
+    // tippy(aboutBtn, {
+    //     content: 'Show about',
+    //     placement: 'right-start',
+    // });
     tippy(leaveRoomBtn, {
         content: 'Leave this room',
         placement: 'right-start',
@@ -724,7 +724,7 @@ function whoAreYou() {
     initVideoBtn = getId('initVideoBtn');
 
     tippy(initAudioBtn, {
-        content: 'Click to audio OFF',
+        content: '单击以关闭音频',
         placement: 'top',
     });
     tippy(initVideoBtn, {
@@ -762,8 +762,7 @@ function welcomeUser() {
         title: '<strong>Welcome ' + myPeerName + '</strong>',
         imageAlt: 'mirotalk-welcome',
         imageUrl: welcomeImg,
-        html:
-            `
+        html: `
         <br/> 
         <p style="color:white;">Share this meeting invite others to join.</p>
         <p style="color:rgb(8, 189, 89);">` +
@@ -1178,7 +1177,7 @@ function setTheme(theme) {
             document.documentElement.style.setProperty('--private-msg-bg', 'rgba(252, 110, 110, 0.7)');
             document.documentElement.style.setProperty('--right-msg-bg', 'rgba(0, 0, 0, 0.7)');
             break;
-        // ...
+            // ...
         default:
             console.log('No theme found');
     }
@@ -1744,7 +1743,7 @@ function getTimeToString(time) {
  * Handle WebRTC left buttons
  */
 function manageLeftButtons() {
-    setShareRoomBtn();
+    // setShareRoomBtn();
     setAudioBtn();
     setVideoBtn();
     setSwapCameraBtn();
@@ -1757,7 +1756,7 @@ function manageLeftButtons() {
     setMyWhiteboardBtn();
     setMyFileShareBtn();
     setMySettingsBtn();
-    setAboutBtn();
+    // setAboutBtn();
     setLeaveRoomBtn();
     showButtonsBarAndMenu();
 }
@@ -1765,11 +1764,11 @@ function manageLeftButtons() {
 /**
  * Copy - share room url button click event
  */
-function setShareRoomBtn() {
-    shareRoomBtn.addEventListener('click', async (e) => {
-        shareRoomUrl();
-    });
-}
+// function setShareRoomBtn() {
+//     shareRoomBtn.addEventListener('click', async(e) => {
+//         shareRoomUrl();
+//     });
+// }
 
 /**
  * Audio mute - unmute button click event
@@ -1938,7 +1937,7 @@ function setChatRoomBtn() {
     });
 
     // on input check 4emoji from map
-    msgerInput.oninput = function () {
+    msgerInput.oninput = function() {
         for (let i in chatInputEmoji) {
             let regex = new RegExp(escapeSpecialChars(i), 'gim');
             this.value = this.value.replace(regex, chatInputEmoji[i]);
@@ -1975,7 +1974,7 @@ function setChatEmojiBtn() {
  * Set my hand button click event
  */
 function setMyHandBtn() {
-    myHandBtn.addEventListener('click', async (e) => {
+    myHandBtn.addEventListener('click', async(e) => {
         setMyHandStatus();
     });
 }
@@ -2088,11 +2087,11 @@ function setMySettingsBtn() {
 /**
  * About button click event
  */
-function setAboutBtn() {
-    aboutBtn.addEventListener('click', (e) => {
-        showAbout();
-    });
-}
+// function setAboutBtn() {
+//     aboutBtn.addEventListener('click', (e) => {
+//         showAbout();
+//     });
+// }
 
 /**
  * Leave room button click event
@@ -2257,10 +2256,10 @@ function getVideoConstraints(videoQuality) {
     switch (videoQuality) {
         case 'useVideo':
             return useVideo;
-        // Firefox not support set frameRate (OverconstrainedError) O.o
+            // Firefox not support set frameRate (OverconstrainedError) O.o
         case 'default':
             return { frameRate: frameRate };
-        // video cam constraints default
+            // video cam constraints default
         case 'qvgaVideo':
             return {
                 width: { exact: 320 },
@@ -2509,8 +2508,7 @@ async function shareRoomUrl() {
             title: 'Share the Room',
             // imageAlt: 'mirotalk-share',
             // imageUrl: shareUrlImg,
-            html:
-                `
+            html: `
             <br/>
             <div id="qrRoomContainer">
                 <canvas id="qrRoom"></canvas>
@@ -2602,7 +2600,7 @@ function handleAudio(e, init) {
         audioBtn.className = 'fas fa-microphone' + (myAudioStatus ? '' : '-slash');
         if (!isMobileDevice) {
             tippy(initAudioBtn, {
-                content: myAudioStatus ? 'Click to audio OFF' : 'Click to audio ON',
+                content: myAudioStatus ? '单击以关闭音频' : '单击以开启音频',
                 placement: 'top',
             });
         }
@@ -3562,7 +3560,7 @@ function setMyAudioStatus(status) {
     // only for desktop
     if (!isMobileDevice) {
         tippy(audioBtn, {
-            content: status ? 'Click to audio OFF' : 'Click to audio ON',
+            content: status ? '单击以关闭音频' : '单击以开启音频',
             placement: 'right-start',
         });
     }
@@ -3828,10 +3826,8 @@ function disableAllPeers(element) {
         position: 'center',
         imageUrl: element == 'audio' ? audioOffImg : camOffImg,
         title: element == 'audio' ? 'Mute everyone except yourself?' : 'Hide everyone except yourself?',
-        text:
-            element == 'audio'
-                ? "Once muted, you won't be able to unmute them, but they can unmute themselves at any time."
-                : "Once hided, you won't be able to unhide them, but they can unhide themselves at any time.",
+        text: element == 'audio' ?
+            "Once muted, you won't be able to unmute them, but they can unmute themselves at any time." : "Once hided, you won't be able to unhide them, but they can unhide themselves at any time.",
         showDenyButton: true,
         confirmButtonText: element == 'audio' ? `Mute` : `Hide`,
         denyButtonText: `Cancel`,
@@ -3872,10 +3868,8 @@ function disablePeer(peer_id, element) {
         position: 'center',
         imageUrl: element == 'audio' ? audioOffImg : camOffImg,
         title: element == 'audio' ? 'Mute this participant?' : 'Hide this participant?',
-        text:
-            element == 'audio'
-                ? "Once muted, you won't be able to unmute them, but they can unmute themselves at any time."
-                : "Once hided, you won't be able to unhide them, but they can unhide themselves at any time.",
+        text: element == 'audio' ?
+            "Once muted, you won't be able to unmute them, but they can unmute themselves at any time." : "Once hided, you won't be able to unhide them, but they can unhide themselves at any time.",
         showDenyButton: true,
         confirmButtonText: element == 'audio' ? `Mute` : `Hide`,
         denyButtonText: `Cancel`,
@@ -4089,7 +4083,7 @@ function whiteboardAddObj(type) {
                 if (result.isConfirmed) {
                     let wbCanvasImgURL = result.value;
                     if (isImageURL(wbCanvasImgURL)) {
-                        fabric.Image.fromURL(wbCanvasImgURL, function (myImg) {
+                        fabric.Image.fromURL(wbCanvasImgURL, function(myImg) {
                             addWbCanvasObj(myImg);
                         });
                     } else {
@@ -4117,10 +4111,10 @@ function whiteboardAddObj(type) {
                     let wbCanvasImg = result.value;
                     if (wbCanvasImg && wbCanvasImg.size > 0) {
                         let reader = new FileReader();
-                        reader.onload = function (event) {
+                        reader.onload = function(event) {
                             let imgObj = new Image();
                             imgObj.src = event.target.result;
-                            imgObj.onload = function () {
+                            imgObj.onload = function() {
                                 let image = new fabric.Image(imgObj);
                                 image.set({ top: 0, left: 0 }).scale(0.3);
                                 addWbCanvasObj(image);
@@ -4207,16 +4201,16 @@ function addWbCanvasObj(obj) {
  * Whiteboard: Local listners
  */
 function setupWhiteboardLocalListners() {
-    wbCanvas.on('mouse:down', function (e) {
+    wbCanvas.on('mouse:down', function(e) {
         mouseDown(e);
     });
-    wbCanvas.on('mouse:up', function () {
+    wbCanvas.on('mouse:up', function() {
         mouseUp();
     });
-    wbCanvas.on('mouse:move', function () {
+    wbCanvas.on('mouse:move', function() {
         mouseMove();
     });
-    wbCanvas.on('object:added', function () {
+    wbCanvas.on('object:added', function() {
         objectAdded();
     });
 }
@@ -4430,7 +4424,7 @@ function handleWhiteboardAction(config, logme = true) {
         case 'close':
             if (wbIsOpen) toggleWhiteboard();
             break;
-        //...
+            //...
     }
 }
 
@@ -4901,8 +4895,7 @@ function handleKickedOut(config) {
         position: 'center',
         imageUrl: kickedOutImg,
         title: 'Kicked out!',
-        html:
-            `<h2 style="color: red;">` +
+        html: `<h2 style="color: red;">` +
             `User ` +
             peer_name +
             `</h2> will kick out you after <b style="color: red;"></b> milliseconds.`,
@@ -5009,6 +5002,7 @@ function dragElement(elmnt, dragObj) {
         // otherwise, move the DIV from anywhere inside the DIV:
         elmnt.onmousedown = dragMouseDown;
     }
+
     function dragMouseDown(e) {
         e = e || window.event;
         e.preventDefault();
@@ -5019,6 +5013,7 @@ function dragElement(elmnt, dragObj) {
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
     }
+
     function elementDrag(e) {
         e = e || window.event;
         e.preventDefault();
@@ -5031,6 +5026,7 @@ function dragElement(elmnt, dragObj) {
         elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
         elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
     }
+
     function closeDragElement() {
         // stop moving when mouse button is released:
         document.onmouseup = null;
@@ -5137,7 +5133,7 @@ function userLog(type, message) {
                 title: message,
             });
             break;
-        // ......
+            // ......
         default:
             alert(message);
     }

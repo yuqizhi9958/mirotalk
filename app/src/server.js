@@ -54,7 +54,7 @@ app.use(cors()); // Enable All CORS Requests for all origins
 app.use(compression()); // Compress all HTTP responses using GZip
 
 const isHttps = false; // must be the same to client.js isHttps
-const port = process.env.PORT || 3000; // must be the same to client.js signalingServerPort
+const port = process.env.PORT || 443; // must be the same to client.js signalingServerPort
 
 let io, server, host;
 
@@ -206,7 +206,7 @@ function getMeetingURL(host) {
 // end of MiroTalk API v1
 
 // not match any of page before, so 404 not found
-app.get('*', function (req, res) {
+app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, '../../', 'public/view/404.html'));
 });
 
