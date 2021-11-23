@@ -358,11 +358,11 @@ function setButtonsTitle() {
     //     placement: 'right-start',
     // });
     tippy(audioBtn, {
-        content: '单击以关闭音频',
+        content: '关闭音频',
         placement: 'right-start',
     });
     tippy(videoBtn, {
-        content: '单击以关闭视频',
+        content: '关闭视频',
         placement: 'right-start',
     });
     tippy(screenShareBtn, {
@@ -378,7 +378,7 @@ function setButtonsTitle() {
         placement: 'right-start',
     });
     tippy(chatRoomBtn, {
-        content: '打开聊天框',
+        content: '打开聊天室',
         placement: 'right-start',
     });
     tippy(myHandBtn, {
@@ -420,7 +420,7 @@ function setButtonsTitle() {
         content: '保存记录',
     });
     tippy(msgerClose, {
-        content: '关闭聊天框',
+        content: '关闭聊天室',
     });
     tippy(msgerEmojiBtn, {
         content: '表情',
@@ -724,11 +724,11 @@ function whoAreYou() {
     initVideoBtn = getId('initVideoBtn');
 
     tippy(initAudioBtn, {
-        content: '单击以关闭音频',
+        content: '关闭音频',
         placement: 'top',
     });
     tippy(initVideoBtn, {
-        content: '单击以关闭视频',
+        content: '关闭视频',
         placement: 'top',
     });
 }
@@ -1891,7 +1891,7 @@ function setChatRoomBtn() {
     // show msger participants section
     msgerCPBtn.addEventListener('click', (e) => {
         if (!thereIsPeerConnections()) {
-            userLog('info', 'No participants detected');
+            userLog('info', '未检测到参与者');
             return;
         }
         msgerCP.style.display = 'flex';
@@ -2600,7 +2600,7 @@ function handleAudio(e, init) {
         audioBtn.className = 'fas fa-microphone' + (myAudioStatus ? '' : '-slash');
         if (!isMobileDevice) {
             tippy(initAudioBtn, {
-                content: myAudioStatus ? '单击以关闭音频' : '单击以开启音频',
+                content: myAudioStatus ? '关闭音频' : '开启音频',
                 placement: 'top',
             });
         }
@@ -2622,7 +2622,7 @@ function handleVideo(e, init) {
         videoBtn.className = 'fas fa-video' + (myVideoStatus ? '' : '-slash');
         if (!isMobileDevice) {
             tippy(initVideoBtn, {
-                content: myVideoStatus ? '单击以关闭视频' : '单击以开启视频',
+                content: myVideoStatus ? '关闭视频' : '开启视频',
                 placement: 'top',
             });
         }
@@ -2737,7 +2737,7 @@ function setMyVideoStatusTrue() {
     // only for desktop
     if (!isMobileDevice) {
         tippy(videoBtn, {
-            content: '单击以关闭视频',
+            content: '关闭视频',
             placement: 'right-start',
         });
     }
@@ -2830,7 +2830,7 @@ function refreshMyLocalStream(stream, localAudioTrackChange = false) {
 
     /**
      * When you stop the screen sharing, on default i turn back to the webcam with video stream ON.
-     * If you want the webcam with video stream OFF, just disable it with the button (单击以关闭视频),
+     * If you want the webcam with video stream OFF, just disable it with the button (关闭视频),
      * before to stop the screen sharing.
      */
     if (myVideoStatus === false) localMediaStream.getVideoTracks()[0].enabled = false;
@@ -3039,16 +3039,16 @@ function downloadRecordedStream() {
         userLog(
             'success-html',
             `<div style="text-align: left;">
-                🔴 Recording Info <br/>
-                FILE: ${recFileName} <br/>
-                SIZE: ${blobFileSize} <br/>
-                Please wait to be processed, then will be downloaded to your ${currentDevice} device.
+                🔴 录制信息 <br/>
+                文件名称: ${recFileName} <br/>
+                文件大小: ${blobFileSize} <br/>
+                请等待处理, 然后将下载到您的 ${currentDevice} 设备.
             </div>`,
         );
 
         saveBlobToFile(blob, recFileName);
     } catch (err) {
-        userLog('error', 'Recording save failed: ' + err);
+        userLog('error', '录制文件保存失败: ' + err);
     }
 }
 
@@ -3093,7 +3093,7 @@ function showChatRoomDraggable() {
     // only for desktop
     if (!isMobileDevice) {
         tippy(chatRoomBtn, {
-            content: '关闭聊天框',
+            content: '关闭聊天室',
             placement: 'right-start',
         });
     }
@@ -3143,7 +3143,7 @@ function hideChatRoomAndEmojiPicker() {
     // only for desktop
     if (!isMobileDevice) {
         tippy(chatRoomBtn, {
-            content: '打开聊天框',
+            content: '打开聊天室',
             placement: 'right-start',
         });
     }
@@ -3154,7 +3154,7 @@ function hideChatRoomAndEmojiPicker() {
  */
 function sendChatMessage() {
     if (!thereIsPeerConnections()) {
-        userLog('info', "Can't send message, no participants in the room");
+        userLog('info', "不能发送信息，房间内没有参与者！");
         msgerInput.value = '';
         return;
     }
@@ -3560,7 +3560,7 @@ function setMyAudioStatus(status) {
     // only for desktop
     if (!isMobileDevice) {
         tippy(audioBtn, {
-            content: status ? '单击以关闭音频' : '单击以开启音频',
+            content: status ? '关闭音频' : '开启音频',
             placement: 'right-start',
         });
     }
@@ -3583,7 +3583,7 @@ function setMyVideoStatus(status) {
     // only for desktop
     if (!isMobileDevice) {
         tippy(videoBtn, {
-            content: status ? '单击以关闭视频' : '单击以开启视频',
+            content: status ? '关闭视频' : '开启视频',
             placement: 'right-start',
         });
     }
@@ -3818,7 +3818,7 @@ function setMyVideoOff(peer_name) {
  */
 function disableAllPeers(element) {
     if (!thereIsPeerConnections()) {
-        userLog('info', 'No participants detected');
+        userLog('info', '未检测到参与者');
         return;
     }
     Swal.fire({
@@ -3860,7 +3860,7 @@ function disableAllPeers(element) {
  */
 function disablePeer(peer_id, element) {
     if (!thereIsPeerConnections()) {
-        userLog('info', 'No participants detected');
+        userLog('info', '未检测到参与者');
         return;
     }
     Swal.fire({
@@ -4581,7 +4581,7 @@ function selectFileToShare() {
             if (fileToSend && fileToSend.size > 0) {
                 // no peers in the room
                 if (!thereIsPeerConnections()) {
-                    userLog('info', 'No participants detected');
+                    userLog('info', '未检测到参与者');
                     return;
                 }
                 // send some metadata about our file to peers in the room
@@ -4740,7 +4740,7 @@ function sendVideoUrl(peer_id = null) {
     }).then((result) => {
         if (result.value) {
             if (!thereIsPeerConnections()) {
-                userLog('info', 'No participants detected');
+                userLog('info', '未检测到参与者');
                 return;
             }
             console.log('Video URL: ' + result.value);
