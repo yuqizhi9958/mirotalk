@@ -362,39 +362,39 @@ function setButtonsTitle() {
         placement: 'right-start',
     });
     tippy(videoBtn, {
-        content: 'Click to video OFF',
+        content: '单击以关闭视频',
         placement: 'right-start',
     });
     tippy(screenShareBtn, {
-        content: 'START screen sharing',
+        content: '开启屏幕共享',
         placement: 'right-start',
     });
     tippy(recordStreamBtn, {
-        content: 'START recording',
+        content: '开启录制',
         placement: 'right-start',
     });
     tippy(fullScreenBtn, {
-        content: 'VIEW full screen',
+        content: '全屏显示',
         placement: 'right-start',
     });
     tippy(chatRoomBtn, {
-        content: 'OPEN the chat',
+        content: '打开聊天框',
         placement: 'right-start',
     });
     tippy(myHandBtn, {
-        content: 'RAISE your hand',
+        content: '举手',
         placement: 'right-start',
     });
     tippy(whiteboardBtn, {
-        content: 'OPEN the whiteboard',
+        content: '打开画板',
         placement: 'right-start',
     });
     tippy(fileShareBtn, {
-        content: 'SHARE the file',
+        content: '分享文件',
         placement: 'right-start',
     });
     tippy(mySettingsBtn, {
-        content: 'Show settings',
+        content: '打开设置',
         placement: 'right-start',
     });
     // tippy(aboutBtn, {
@@ -402,130 +402,130 @@ function setButtonsTitle() {
     //     placement: 'right-start',
     // });
     tippy(leaveRoomBtn, {
-        content: 'Leave this room',
+        content: '退出房间',
         placement: 'right-start',
     });
 
     // chat room buttons
     tippy(msgerTheme, {
-        content: 'Ghost theme',
+        content: '背景透明',
     });
     tippy(msgerCPBtn, {
-        content: 'Private messages',
+        content: '私信',
     });
     tippy(msgerClean, {
-        content: 'Clean messages',
+        content: '清除记录',
     });
     tippy(msgerSaveBtn, {
-        content: 'Save messages',
+        content: '保存记录',
     });
     tippy(msgerClose, {
-        content: 'Close the chat',
+        content: '关闭聊天框',
     });
     tippy(msgerEmojiBtn, {
-        content: 'Emoji',
+        content: '表情',
     });
     tippy(msgerSendBtn, {
-        content: 'Send',
+        content: '发送',
     });
 
     // settings
     tippy(mySettingsCloseBtn, {
-        content: 'Close settings',
+        content: '关闭设置',
     });
     tippy(myPeerNameSetBtn, {
-        content: 'Change name',
+        content: '修改名字',
     });
 
     // whiteboard btns
     tippy(wbDrawingColorEl, {
-        content: 'DRAWING color',
+        content: '绘画颜色',
         placement: 'bottom',
     });
     tippy(wbBackgroundColorEl, {
-        content: 'BACKGROUND color',
+        content: '背景颜色',
         placement: 'bottom',
     });
     tippy(whiteboardPencilBtn, {
-        content: 'DRAWING mode',
+        content: '绘画模式',
         placement: 'bottom',
     });
     tippy(whiteboardObjectBtn, {
-        content: 'OBJECT mode',
+        content: '对象模式',
         placement: 'bottom',
     });
     tippy(whiteboardUndoBtn, {
-        content: 'UNDO the board',
+        content: '返回上一步',
         placement: 'bottom',
     });
     tippy(whiteboardRedoBtn, {
-        content: 'REDO the board',
+        content: '返回下一步',
         placement: 'bottom',
     });
     tippy(whiteboardImgFileBtn, {
-        content: 'ADD image from file',
+        content: '添加图片文件',
         placement: 'bottom',
     });
     tippy(whiteboardImgUrlBtn, {
-        content: 'ADD image from URL',
+        content: '添加图片URL',
         placement: 'bottom',
     });
     tippy(whiteboardTextBtn, {
-        content: 'ADD the text',
+        content: '添加文字',
         placement: 'bottom',
     });
     tippy(whiteboardLineBtn, {
-        content: 'ADD the line',
+        content: '添加线条',
         placement: 'bottom',
     });
     tippy(whiteboardRectBtn, {
-        content: 'ADD the rectangle',
+        content: '添加矩形',
         placement: 'bottom',
     });
     tippy(whiteboardCircleBtn, {
-        content: 'ADD the circle',
+        content: '添加圆圈',
         placement: 'bottom',
     });
     tippy(whiteboardSaveBtn, {
-        content: 'SAVE the board',
+        content: '保存画板',
         placement: 'bottom',
     });
     tippy(whiteboardEraserBtn, {
-        content: 'ERASE the object',
+        content: '清除对象',
         placement: 'bottom',
     });
     tippy(whiteboardCleanBtn, {
-        content: 'CLEAN the board',
+        content: '清除画板',
         placement: 'bottom',
     });
     tippy(whiteboardCloseBtn, {
-        content: 'CLOSE the board',
+        content: '关闭画板',
         placement: 'bottom',
     });
 
     // room actions btn
     tippy(muteEveryoneBtn, {
-        content: 'MUTE everyone except yourself',
+        content: '静音其他人员麦克风',
         placement: 'top',
     });
     tippy(hideEveryoneBtn, {
-        content: 'HIDE everyone except yourself',
+        content: '关闭其他人员摄像头',
         placement: 'top',
     });
 
     // Suspend File transfer btn
     tippy(sendAbortBtn, {
-        content: 'ABORT file transfer',
+        content: '中止文件传输',
         placement: 'right-start',
     });
 
     // video URL player
     tippy(videoUrlCloseBtn, {
-        content: 'Close the videoPlayer',
+        content: '关闭视频播放',
     });
-    tippy(msgerVideoUrlBtn, {
-        content: 'Share YouTube video to all participants',
-    });
+    // tippy(msgerVideoUrlBtn, {
+    //     content: 'Share YouTube video to all participants',
+    // });
 }
 
 /**
@@ -685,14 +685,14 @@ function whoAreYou() {
         position: 'center',
         imageAlt: 'mirotalk-name',
         imageUrl: welcomeImg,
-        title: 'Enter your name',
+        title: '输入你的名字',
         input: 'text',
         html: `<br>
         <div style="overflow: hidden;">
             <button id="initAudioBtn" class="fas fa-microphone" onclick="handleAudio(event, true)"></button>
             <button id="initVideoBtn" class="fas fa-video" onclick="handleVideo(event, true)"></button>
         </div>`,
-        confirmButtonText: `Join meeting`,
+        confirmButtonText: `进入房间`,
         showClass: {
             popup: 'animate__animated animate__fadeInDown',
         },
@@ -700,7 +700,7 @@ function whoAreYou() {
             popup: 'animate__animated animate__fadeOutUp',
         },
         inputValidator: (value) => {
-            if (!value) return 'Please enter your name';
+            if (!value) return '请输入你的名字';
 
             document.body.style.backgroundImage = 'none';
             myVideoWrap.style.display = 'inline';
@@ -709,7 +709,7 @@ function whoAreYou() {
             resizeVideos();
 
             myPeerName = value;
-            myVideoParagraph.innerHTML = myPeerName + ' (me)';
+            myVideoParagraph.innerHTML = myPeerName + ' (我)';
             setPeerAvatarImgName('myVideoAvatarImage', myPeerName);
             setPeerChatAvatarImgName('right', myPeerName);
             joinToChannel();
@@ -728,7 +728,7 @@ function whoAreYou() {
         placement: 'top',
     });
     tippy(initVideoBtn, {
-        content: 'Click to video OFF',
+        content: '单击以关闭视频',
         placement: 'top',
     });
 }
@@ -759,20 +759,20 @@ function welcomeUser() {
     Swal.fire({
         background: swalBackground,
         position: 'center',
-        title: '<strong>Welcome ' + myPeerName + '</strong>',
+        title: '<strong>欢迎 ' + myPeerName + '</strong>',
         imageAlt: 'mirotalk-welcome',
         imageUrl: welcomeImg,
         html: `
         <br/> 
-        <p style="color:white;">Share this meeting invite others to join.</p>
+        <p style="color:white;">共享此会议并邀请其他人加入.</p>
         <p style="color:rgb(8, 189, 89);">` +
             myRoomUrl +
             `</p>`,
         showDenyButton: true,
         showCancelButton: true,
-        confirmButtonText: `Copy meeting URL`,
-        denyButtonText: `Email invite`,
-        cancelButtonText: `Close`,
+        confirmButtonText: `复制房间URL`,
+        denyButtonText: `邮件邀请`,
+        cancelButtonText: `关闭`,
         showClass: {
             popup: 'animate__animated animate__fadeInDown',
         },
@@ -1299,7 +1299,7 @@ function loadLocalMedia(stream) {
     myCountTimeImg.className = 'fas fa-clock';
     myCountTime.setAttribute('id', 'countTime');
     tippy(myCountTime, {
-        content: 'Session Time',
+        content: '会议时间',
     });
     // my peer name
     myVideoParagraphImg.setAttribute('id', 'myVideoParagraphImg');
@@ -1307,32 +1307,32 @@ function loadLocalMedia(stream) {
     myVideoParagraph.setAttribute('id', 'myVideoParagraph');
     myVideoParagraph.className = 'videoPeerName';
     tippy(myVideoParagraph, {
-        content: 'My name',
+        content: '我的名称',
     });
     // my hand status element
     myHandStatusIcon.setAttribute('id', 'myHandStatusIcon');
     myHandStatusIcon.className = 'fas fa-hand-paper pulsate';
     myHandStatusIcon.style.setProperty('color', 'rgb(0, 255, 0)');
     tippy(myHandStatusIcon, {
-        content: 'My hand is RAISED',
+        content: '我举手了',
     });
     // my video status element
     myVideoStatusIcon.setAttribute('id', 'myVideoStatusIcon');
     myVideoStatusIcon.className = 'fas fa-video';
     tippy(myVideoStatusIcon, {
-        content: 'My video is ON',
+        content: '摄像头已开启',
     });
     // my audio status element
     myAudioStatusIcon.setAttribute('id', 'myAudioStatusIcon');
     myAudioStatusIcon.className = 'fas fa-microphone';
     tippy(myAudioStatusIcon, {
-        content: 'My audio is ON',
+        content: '麦克风已开启',
     });
     // my video full screen mode
     myVideoFullScreenBtn.setAttribute('id', 'myVideoFullScreenBtn');
     myVideoFullScreenBtn.className = 'fas fa-expand';
     tippy(myVideoFullScreenBtn, {
-        content: 'Full screen mode',
+        content: '全屏模式',
     });
     // my video avatar image
     myVideoAvatarImage.setAttribute('id', 'myVideoAvatarImage');
@@ -1423,7 +1423,7 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
     remoteVideoParagraph.setAttribute('id', peer_id + '_name');
     remoteVideoParagraph.className = 'videoPeerName';
     tippy(remoteVideoParagraph, {
-        content: 'Participant name',
+        content: '参与人员姓名',
     });
     const peerVideoText = document.createTextNode(peers[peer_id]['peer_name']);
     remoteVideoParagraph.appendChild(peerVideoText);
@@ -1432,43 +1432,43 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
     remoteHandStatusIcon.style.setProperty('color', 'rgb(0, 255, 0)');
     remoteHandStatusIcon.className = 'fas fa-hand-paper pulsate';
     tippy(remoteHandStatusIcon, {
-        content: 'Participant hand is RAISED',
+        content: '参与者举手了',
     });
     // remote video status element
     remoteVideoStatusIcon.setAttribute('id', peer_id + '_videoStatus');
     remoteVideoStatusIcon.className = 'fas fa-video';
     tippy(remoteVideoStatusIcon, {
-        content: 'Participant video is ON',
+        content: '参与者摄像头已开启',
     });
     // remote audio status element
     remoteAudioStatusIcon.setAttribute('id', peer_id + '_audioStatus');
     remoteAudioStatusIcon.className = 'fas fa-microphone';
     tippy(remoteAudioStatusIcon, {
-        content: 'Participant audio is ON',
+        content: '参与者麦克风已开启',
     });
     // remote peer YouTube video
-    remoteYoutubeBtnBtn.setAttribute('id', peer_id + '_youtube');
-    remoteYoutubeBtnBtn.className = 'fab fa-youtube';
-    tippy(remoteYoutubeBtnBtn, {
-        content: 'Send YouTube video',
-    });
+    // remoteYoutubeBtnBtn.setAttribute('id', peer_id + '_youtube');
+    // remoteYoutubeBtnBtn.className = 'fab fa-youtube';
+    // tippy(remoteYoutubeBtnBtn, {
+    //     content: 'Send YouTube video',
+    // });
     // remote private message
     remotePrivateMsgBtn.setAttribute('id', peer_id + '_privateMsg');
     remotePrivateMsgBtn.className = 'fas fa-paper-plane';
     tippy(remotePrivateMsgBtn, {
-        content: 'Send private message',
+        content: '发送私信',
     });
     // remote peer kick out
     remotePeerKickOut.setAttribute('id', peer_id + '_kickOut');
     remotePeerKickOut.className = 'fas fa-sign-out-alt';
     tippy(remotePeerKickOut, {
-        content: 'Kick out',
+        content: '踢出房间',
     });
     // remote video full screen mode
     remoteVideoFullScreenBtn.setAttribute('id', peer_id + '_fullScreen');
     remoteVideoFullScreenBtn.className = 'fas fa-expand';
     tippy(remoteVideoFullScreenBtn, {
-        content: 'Full screen mode',
+        content: '全屏模式',
     });
     // my video avatar image
     remoteVideoAvatarImage.setAttribute('id', peer_id + '_avatar');
@@ -1525,7 +1525,7 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
     // handle remote private messages
     handlePeerPrivateMsg(peer_id, peer_name);
     // handle remote youtube video
-    handlePeerYouTube(peer_id);
+    // handlePeerYouTube(peer_id);
     // show status menu
     toggleClassElements('statusMenu', 'inline');
     // notify if peer started to recording own screen + audio
@@ -1697,10 +1697,10 @@ function handleVideoPlayerFs(videoId, videoFullScreenBtnId, peer_id = null) {
                 // Chrome Firefox Opera Microsoft Edge
                 document.exitFullscreen();
             } else if (document.webkitCancelFullScreen) {
-                // Safari exit full screen mode ( Not work... )
+                // Safari 退出全屏 mode ( Not work... )
                 document.webkitCancelFullScreen();
             } else if (document.msExitFullscreen) {
-                // IE11 exit full screen mode
+                // IE11 退出全屏 mode
                 document.msExitFullscreen();
             }
             isVideoOnFullScreen = false;
@@ -1844,7 +1844,7 @@ function setFullScreenBtn() {
                 // only for desktop
                 if (!isMobileDevice) {
                     tippy(fullScreenBtn, {
-                        content: 'VIEW full screen',
+                        content: '全屏显示',
                         placement: 'right-start',
                     });
                 }
@@ -1923,9 +1923,9 @@ function setChatRoomBtn() {
     });
 
     // open Video Url Player
-    msgerVideoUrlBtn.addEventListener('click', (e) => {
-        sendVideoUrl();
-    });
+    // msgerVideoUrlBtn.addEventListener('click', (e) => {
+    //     sendVideoUrl();
+    // });
 
     // Execute a function when the user releases a key on the keyboard
     msgerInput.addEventListener('keyup', (e) => {
@@ -2514,15 +2514,15 @@ async function shareRoomUrl() {
                 <canvas id="qrRoom"></canvas>
             </div>
             <br/><br/>
-            <p style="color:white;"> Share this meeting invite others to join.</p>
+            <p style="color:white;"> 共享此会议并邀请其他人加入.</p>
             <p style="color:rgb(8, 189, 89);">` +
                 myRoomUrl +
                 `</p>`,
             showDenyButton: true,
             showCancelButton: true,
-            confirmButtonText: `Copy meeting URL`,
-            denyButtonText: `Email invite`,
-            cancelButtonText: `Close`,
+            confirmButtonText: `复制房间URL`,
+            denyButtonText: `邮件邀请`,
+            cancelButtonText: `关闭`,
             showClass: {
                 popup: 'animate__animated animate__fadeInDown',
             },
@@ -2572,7 +2572,7 @@ function copyRoomURL() {
     navigator.clipboard.writeText(tmpInput.value);
     console.log('Copied to clipboard Join Link ', roomURL);
     document.body.removeChild(tmpInput);
-    userLog('toast', 'Meeting URL is copied to clipboard 👍');
+    userLog('toast', '房间URL已复制到剪贴板 👍');
 }
 
 /**
@@ -2622,7 +2622,7 @@ function handleVideo(e, init) {
         videoBtn.className = 'fas fa-video' + (myVideoStatus ? '' : '-slash');
         if (!isMobileDevice) {
             tippy(initVideoBtn, {
-                content: myVideoStatus ? 'Click to video OFF' : 'Click to video ON',
+                content: myVideoStatus ? '单击以关闭视频' : '单击以开启视频',
                 placement: 'top',
             });
         }
@@ -2702,8 +2702,8 @@ function toggleScreenSharing() {
             setScreenSharingStatus(isScreenStreaming);
         })
         .catch((err) => {
-            console.error('[Error] Unable to share the screen', err);
-            userLog('error', 'Unable to share the screen ' + err);
+            console.error('[Error] 无法共享屏幕', err);
+            userLog('error', '无法共享屏幕 ' + err);
         });
 }
 
@@ -2716,7 +2716,7 @@ function setScreenSharingStatus(status) {
     // only for desktop
     if (!isMobileDevice) {
         tippy(screenShareBtn, {
-            content: status ? 'STOP screen sharing' : 'START screen sharing',
+            content: status ? '停止屏幕共享' : '开启屏幕共享',
             placement: 'right-start',
         });
     }
@@ -2737,7 +2737,7 @@ function setMyVideoStatusTrue() {
     // only for desktop
     if (!isMobileDevice) {
         tippy(videoBtn, {
-            content: 'Click to video OFF',
+            content: '单击以关闭视频',
             placement: 'right-start',
         });
     }
@@ -2762,7 +2762,7 @@ function toggleFullScreen() {
     // only for desktop
     if (!isMobileDevice) {
         tippy(fullScreenBtn, {
-            content: isDocumentOnFullScreen ? 'EXIT full screen' : 'VIEW full screen',
+            content: isDocumentOnFullScreen ? '退出全屏' : '全屏显示',
             placement: 'right-start',
         });
     }
@@ -2830,14 +2830,14 @@ function refreshMyLocalStream(stream, localAudioTrackChange = false) {
 
     /**
      * When you stop the screen sharing, on default i turn back to the webcam with video stream ON.
-     * If you want the webcam with video stream OFF, just disable it with the button (click to video OFF),
+     * If you want the webcam with video stream OFF, just disable it with the button (单击以关闭视频),
      * before to stop the screen sharing.
      */
     if (myVideoStatus === false) localMediaStream.getVideoTracks()[0].enabled = false;
 }
 
 /**
- * Start recording time
+ * 开启录制 time
  */
 function startRecordingTime() {
     recStartTime = Date.now();
@@ -2869,7 +2869,7 @@ function getSupportedMimeTypes() {
 }
 
 /**
- * Start Recording
+ * 开启录制
  * https://github.com/webrtc/samples/tree/gh-pages/src/content/getusermedia/record
  * https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder
  * https://developer.mozilla.org/en-US/docs/Web/API/MediaStream
@@ -2907,13 +2907,13 @@ function startStreamRecording() {
                     handleMediaRecorder(mediaRecorder);
                 })
                 .catch((err) => {
-                    console.error('[Error] Unable to recording the screen + audio', err);
-                    userLog('error', 'Unable to recording the screen + audio ' + err);
+                    console.error('[Error] 无法录制', err);
+                    userLog('error', '无法录制 ' + err);
                 });
         }
     } catch (err) {
         console.error('Exception while creating MediaRecorder: ', err);
-        userLog('error', "Can't start stream recording: " + err);
+        userLog('error', "无法启动录制: " + err);
         return;
     }
 }
@@ -2963,7 +2963,7 @@ function handleMediaRecorderStart(event) {
     // only for desktop
     if (!isMobileDevice) {
         tippy(recordStreamBtn, {
-            content: 'STOP recording',
+            content: '停止录制',
             placement: 'right-start',
         });
     } else {
@@ -2988,7 +2988,7 @@ function handleMediaRecorderStop(event) {
     playSound('recStop');
     console.log('MediaRecorder stopped: ', event);
     console.log('MediaRecorder Blobs: ', recordedBlobs);
-    myVideoParagraph.innerHTML = myPeerName + ' (me)';
+    myVideoParagraph.innerHTML = myPeerName + ' (我)';
     isStreamRecording = false;
     if (isRecScreenSream) {
         recScreenStream.getTracks().forEach((track) => {
@@ -3003,7 +3003,7 @@ function handleMediaRecorderStop(event) {
     // only for desktop
     if (!isMobileDevice) {
         tippy(recordStreamBtn, {
-            content: 'START recording',
+            content: '开启录制',
             placement: 'right-start',
         });
     } else {
@@ -3012,7 +3012,7 @@ function handleMediaRecorderStop(event) {
 }
 
 /**
- * Stop recording
+ * 停止录制
  */
 function stopStreamRecording() {
     mediaRecorder.stop();
@@ -3093,7 +3093,7 @@ function showChatRoomDraggable() {
     // only for desktop
     if (!isMobileDevice) {
         tippy(chatRoomBtn, {
-            content: 'CLOSE the chat',
+            content: '关闭聊天框',
             placement: 'right-start',
         });
     }
@@ -3143,7 +3143,7 @@ function hideChatRoomAndEmojiPicker() {
     // only for desktop
     if (!isMobileDevice) {
         tippy(chatRoomBtn, {
-            content: 'OPEN the chat',
+            content: '打开聊天框',
             placement: 'right-start',
         });
     }
@@ -3468,7 +3468,7 @@ function updateMyPeerName() {
     if (!myNewPeerName) return;
 
     myPeerName = myNewPeerName;
-    myVideoParagraph.innerHTML = myPeerName + ' (me)';
+    myVideoParagraph.innerHTML = myPeerName + ' (我)';
 
     sendToServer('peerName', {
         room_id: roomId,
@@ -3526,7 +3526,7 @@ function setMyHandStatus() {
         myHandStatus = false;
         if (!isMobileDevice) {
             tippy(myHandBtn, {
-                content: 'RAISE your hand',
+                content: '举手',
                 placement: 'right-start',
             });
         }
@@ -3535,7 +3535,7 @@ function setMyHandStatus() {
         myHandStatus = true;
         if (!isMobileDevice) {
             tippy(myHandBtn, {
-                content: 'LOWER your hand',
+                content: '放下手',
                 placement: 'right-start',
             });
         }
@@ -3583,7 +3583,7 @@ function setMyVideoStatus(status) {
     // only for desktop
     if (!isMobileDevice) {
         tippy(videoBtn, {
-            content: status ? 'Click to video OFF' : 'Click to video ON',
+            content: status ? '单击以关闭视频' : '单击以开启视频',
             placement: 'right-start',
         });
     }
@@ -3637,7 +3637,7 @@ function setPeerAudioStatus(peer_id, status) {
     let peerAudioStatus = getId(peer_id + '_audioStatus');
     peerAudioStatus.className = 'fas fa-microphone' + (status ? '' : '-slash');
     tippy(peerAudioStatus, {
-        content: status ? 'Participant audio is ON' : 'Participant audio is OFF',
+        content: status ? '参与者麦克风已开启' : '参与者麦克风已关闭',
     });
     status ? playSound('on') : playSound('off');
 }
@@ -3708,12 +3708,12 @@ function handlePeerPrivateMsg(peer_id, toPeerName) {
  * Send YouTube video to specific peer
  * @param {*} peer_id
  */
-function handlePeerYouTube(peer_id) {
-    let peerYoutubeBtn = getId(peer_id + '_youtube');
-    peerYoutubeBtn.onclick = () => {
-        sendVideoUrl(peer_id);
-    };
-}
+// function handlePeerYouTube(peer_id) {
+//     let peerYoutubeBtn = getId(peer_id + '_youtube');
+//     peerYoutubeBtn.onclick = () => {
+//         sendVideoUrl(peer_id);
+//     };
+// }
 
 /**
  * Set Participant Video Status Icon and Title
@@ -3726,14 +3726,14 @@ function setPeerVideoStatus(peer_id, status) {
     peerVideoStatus.className = 'fas fa-video' + (status ? '' : '-slash');
     peerVideoAvatarImage.style.display = status ? 'none' : 'block';
     tippy(peerVideoStatus, {
-        content: status ? 'Participant video is ON' : 'Participant video is OFF',
+        content: status ? '参与者摄像头已开启' : '参与者摄像头已关闭',
     });
     status ? playSound('on') : playSound('off');
 }
 
 /**
  * Emit actions to all peers in the same room except yourself
- * @param {*} peerAction muteAudio hideVideo start/stop recording ...
+ * @param {*} peerAction muteAudio hideVideo start/停止录制 ...
  */
 function emitPeersAction(peerAction) {
     if (!thereIsPeerConnections()) return;
@@ -4560,15 +4560,15 @@ function selectFileToShare() {
         imageAlt: 'mirotalk-file-sharing',
         imageUrl: fileSharingImg,
         position: 'center',
-        title: 'Share the file',
+        title: '共享文件',
         input: 'file',
         inputAttributes: {
             accept: fileSharingInput,
             'aria-label': 'Select the file',
         },
         showDenyButton: true,
-        confirmButtonText: `Send`,
-        denyButtonText: `Cancel`,
+        confirmButtonText: `发送`,
+        denyButtonText: `取消`,
         showClass: {
             popup: 'animate__animated animate__fadeInDown',
         },
@@ -4968,10 +4968,10 @@ function leaveRoom() {
         position: 'center',
         imageAlt: 'mirotalk-leave',
         imageUrl: leaveRoomImg,
-        title: 'Leave this room?',
+        title: '退出房间?',
         showDenyButton: true,
-        confirmButtonText: `Yes`,
-        denyButtonText: `No`,
+        confirmButtonText: `确认`,
+        denyButtonText: `取消`,
         showClass: {
             popup: 'animate__animated animate__fadeInDown',
         },
@@ -5070,7 +5070,7 @@ function userLog(type, message) {
                 background: swalBackground,
                 position: 'center',
                 icon: 'error',
-                title: 'Oops...',
+                title: '哎呀...',
                 text: message,
             });
             playSound('error');
