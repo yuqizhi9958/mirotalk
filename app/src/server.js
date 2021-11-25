@@ -53,8 +53,8 @@ const app = express();
 app.use(cors()); // Enable All CORS Requests for all origins
 app.use(compression()); // Compress all HTTP responses using GZip
 
-const isHttps = false; // must be the same to client.js isHttps
-const port = process.env.PORT || 443; // must be the same to client.js signalingServerPort
+const isHttps = true; // must be the same to client.js isHttps
+const port = process.env.PORT || 7443; // must be the same to client.js signalingServerPort
 
 let io, server, host;
 
@@ -82,12 +82,12 @@ const { v4: uuidV4 } = require('uuid');
 const apiBasePath = '/api/v1'; // api endpoint path
 const api_docs = host + apiBasePath + '/docs'; // api docs
 const api_key_secret = process.env.API_KEY_SECRET || 'mirotalk_default_secret';
-const ngrokEnabled = process.env.NGROK_ENABLED;
-const ngrokAuthToken = process.env.NGROK_AUTH_TOKEN;
-const turnEnabled = process.env.TURN_ENABLED;
-const turnUrls = process.env.TURN_URLS;
-const turnUsername = process.env.TURN_USERNAME;
-const turnCredential = process.env.TURN_PASSWORD;
+const ngrokEnabled = true;
+const ngrokAuthToken = '21LyLzS7V5nEsVDVyDPAyCfgn58_2jbPns8ZSZkPaLodSsLF8';
+const turnEnabled = 'false';
+const turnUrls = 'turn:numb.viagenie.ca';
+const turnUsername = '995993625@qq.com';
+const turnCredential = '995993625.a';
 
 const Logger = require('./Logger');
 const log = new Logger('server');
@@ -221,8 +221,9 @@ app.get('*', function(req, res) {
  * Check the functionality of STUN/TURN servers:
  * https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/
  */
-const iceServers = [{ urls: 'stun:stun.l.google.com:19302' }];
+const iceServers = [{ urls: 'stun:stun.xten.com:3478' }];
 
+// stun.xten.com
 if (turnEnabled == 'true') {
     iceServers.push({
         urls: turnUrls,

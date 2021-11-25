@@ -25,8 +25,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 'use strict'; // https://www.w3schools.com/js/js_strict.asp
 
-const isHttps = false; // must be the same to server.js isHttps
-const signalingServerPort = 443; // must be the same to server.js PORT
+const isHttps = true; // must be the same to server.js isHttps
+const signalingServerPort = 7443; // must be the same to server.js PORT
 const signalingServer = getSignalingServer();
 const roomId = getRoomId();
 const peerInfo = getPeerInfo();
@@ -103,7 +103,7 @@ let chatDataChannels = {}; // keep track of our peer chat data channels
 let fileDataChannels = {}; // keep track of our peer file sharing data channels
 let peerMediaElements = {}; // keep track of our peer <video> tags, indexed by peer_id
 let chatMessages = []; // collect chat messages to save it later if want
-let backupIceServers = [{ urls: 'stun:stun.l.google.com:19302' }]; // backup iceServers
+let backupIceServers = [{ urls: 'stun:stun.xten.com:3478' }]; // backup iceServers
 
 let chatInputEmoji = {
     '<3': '\u2764\uFE0F',
@@ -564,7 +564,7 @@ function getPeerGeoLocation() {
  */
 function getSignalingServer() {
     if (isHttps) {
-        return 'https://' + 'localhost' + ':' + signalingServerPort;
+        return 'https://' + window.location.hostname + ':' + signalingServerPort;
         // outside of localhost change it with YOUR-SERVER-DOMAIN
     }
     return (
@@ -800,7 +800,7 @@ function welcomeUser() {
  * @param {*} config
  */
 function handleAddPeer(config) {
-    // console.log("addPeer", JSON.stringify(config));
+    console.log("addPeer", JSON.stringify(config));
 
     let peer_id = config.peer_id;
     let peers = config.peers;
