@@ -20,13 +20,36 @@ GNU Affero General Public License for more details.
 
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
+MiroTalk浏览器客户端
+
+版权所有（C）2021 Miroslav Pejic<Miroslav.Pejic。85@gmail.com>
+
+此程序是免费软件：您可以重新发布和/或修改它
+
+它是根据GNU Affero通用公共许可证的条款发布的
+
+由自由软件基金会，许可证的3版本，或
+
+（由您选择）任何更高版本。
+
+这个节目的发布是希望它会有用，
+
+但无任何保证；甚至没有任何关于
+
+适销性或适合某一特定目的。见
+
+GNU Affero通用公共许可证了解更多详细信息。
+
+您应该已经收到GNU Affero通用公共许可证的副本
+
+和这个节目一起。如果没有，请参阅<https://www.gnu.org/licenses/>.
 
 */
 
 'use strict'; // https://www.w3schools.com/js/js_strict.asp
 
-const isHttps = true; // must be the same to server.js isHttps
-const signalingServerPort = 7443; // must be the same to server.js PORT
+const isHttps = true; // must be the same to server.js isHttps 必须与server.js isHttps相同
+const signalingServerPort = 7443; // must be the same to server.js PORT 必须与server.js PORT相同
 const signalingServer = getSignalingServer();
 const roomId = getRoomId();
 const peerInfo = getPeerInfo();
@@ -47,8 +70,8 @@ const messageImg = '../images/message.png';
 const kickedOutImg = '../images/leave-room.png';
 const aboutImg = '../images/about.png';
 
-const notifyBySound = true; // turn on - off sound notifications
-const fileSharingInput = '*'; // allow all file extensions
+const notifyBySound = true; // turn on - off sound notifications 打开-关闭声音通知
+const fileSharingInput = '*'; // allow all file extensions 允许所有文件扩展名
 
 const isWebRTCSupported = DetectRTC.isWebRTCSupported;
 const isMobileDevice = DetectRTC.isMobileDevice;
@@ -58,7 +81,7 @@ const wbImageInput = 'image/*';
 const wbWidth = 800;
 const wbHeight = 600;
 
-// video cam - screen max frame rate
+// video cam - screen max frame rate 视频摄像机-屏幕最大帧速率
 let videoMaxFrameRate = 30;
 let screenMaxFrameRate = 30;
 
@@ -93,17 +116,17 @@ let isDocumentOnFullScreen = false;
 let isWhiteboardFs = false;
 let isVideoUrlPlayerOpen = false;
 let isRecScreenSream = false;
-let signalingSocket; // socket.io connection to our webserver
-let localMediaStream; // my microphone / webcam
-let remoteMediaStream; // peers microphone / webcam
-let recScreenStream; // recorded screen stream
-let remoteMediaControls = false; // enable - disable peers video player controls (default false)
-let peerConnections = {}; // keep track of our peer connections, indexed by peer_id == socket.io id
-let chatDataChannels = {}; // keep track of our peer chat data channels
-let fileDataChannels = {}; // keep track of our peer file sharing data channels
-let peerMediaElements = {}; // keep track of our peer <video> tags, indexed by peer_id
-let chatMessages = []; // collect chat messages to save it later if want
-let backupIceServers = [{ urls: 'stun:stun.xten.com:3478' }]; // backup iceServers
+let signalingSocket; // socket.io connection to our webserver / socket.io连接到我们的Web服务器
+let localMediaStream; // my microphone / webcam / 我的麦克风/网络摄像头
+let remoteMediaStream; // peers microphone / webcam / 参与人的麦克风/网络摄像头
+let recScreenStream; // recorded screen stream  / 录制的屏幕流
+let remoteMediaControls = false; // enable - disable peers video player controls (default false) / 启用-禁用视频播放器控件（默认为false）
+let peerConnections = {}; // keep track of our peer connections, indexed by peer_id == socket.io id / 跟踪我们的同伴连接，按peer_id==socket.io id索引
+let chatDataChannels = {}; // keep track of our peer chat data channels / 跟踪我们的同伴聊天数据通道
+let fileDataChannels = {}; // keep track of our peer file sharing data channels / 跟踪我们的同伴文件共享数据通道
+let peerMediaElements = {}; // 跟踪我们的peer <video>标签，由peer id索引
+let chatMessages = []; // 收集聊天消息以稍后将其保存
+let backupIceServers = [{ urls: 'stun:stun.xten.com:3478' }]; // backup iceServers  / 备份iceServers
 
 let chatInputEmoji = {
     '<3': '\u2764\uFE0F',
@@ -150,12 +173,12 @@ let msgerChat;
 let msgerEmojiBtn;
 let msgerInput;
 let msgerSendBtn;
-// chat room connected peers
+// chat room connected peers / 聊天室连接的同伴
 let msgerCP;
 let msgerCPHeader;
 let msgerCPCloseBtn;
 let msgerCPList;
-// chat room emoji picker
+// chat room emoji picker / 聊天室表情符号选择器
 let msgerEmojiPicker;
 let emojiPicker;
 // my settings
@@ -181,16 +204,16 @@ let selectors;
 let myVideo;
 let myVideoWrap;
 let myVideoAvatarImage;
-// name && hand video audio status
+// name && hand video audio status / 名称&&手视频音频状态
 let myVideoParagraph;
 let myHandStatusIcon;
 let myVideoStatusIcon;
 let myAudioStatusIcon;
-// record Media Stream
+// record Media Stream / 记录媒体流
 let mediaRecorder;
 let recordedBlobs;
 let isStreamRecording = false;
-// whiteboard init
+// whiteboard init / 画板init
 let whiteboard;
 let whiteboardHeader;
 let wbDrawingColorEl;
@@ -209,18 +232,18 @@ let whiteboardSaveBtn;
 let whiteboardEraserBtn;
 let whiteboardCleanBtn;
 let whiteboardCloseBtn;
-// whiteboard settings
+// whiteboard settings / 画板设置
 let wbCanvas = null;
 let wbIsDrawing = false;
 let wbIsOpen = false;
 let wbIsRedoing = false;
 let wbIsEraser = false;
 let wbPop = [];
-// room actions btns
+// room actions btns  / 房间操作按钮
 let muteEveryoneBtn;
 let hideEveryoneBtn;
 let lockUnlockRoomBtn;
-// file transfer settings
+// file transfer settings / 文件传输设置
 let fileToSend;
 let fileReader;
 let receiveBuffer = [];
@@ -242,7 +265,7 @@ let videoUrlCloseBtn;
 let videoUrlIframe;
 
 /**
- * Load all Html elements by Id
+ * Load all Html elements by Id / 按Id加载所有Html元素
  */
 function getHtmlElementsById() {
     countTime = getId('countTime');
@@ -345,11 +368,11 @@ function getHtmlElementsById() {
 }
 
 /**
- * Using tippy aka very nice tooltip!
+ * Using tippy aka very nice tooltip!  使用tippy非常好的工具提示！
  * https://atomiks.github.io/tippyjs/
  */
 function setButtonsTitle() {
-    // not need for mobile
+    // not need for mobile  /不需要手机
     if (isMobileDevice) return;
 
     // left buttons
@@ -529,7 +552,7 @@ function setButtonsTitle() {
 }
 
 /**
- * Get peer info using DetecRTC
+ * Get peer info using DetecRTC  / 使用DetecRTC获取peer信息
  * https://github.com/muaz-khan/DetectRTC
  * @return Obj peer info
  */
@@ -546,7 +569,7 @@ function getPeerInfo() {
 }
 
 /**
- * Get approximative peer geolocation
+ * Get approximative peer geolocation  / 得到近似的同伴地理位置
  * @return json
  */
 function getPeerGeoLocation() {
@@ -559,7 +582,7 @@ function getPeerGeoLocation() {
 }
 
 /**
- * Get Signaling server URL
+ * Get Signaling server URL  / 获取信令服务器URL
  * @return Signaling server URL
  */
 function getSignalingServer() {
@@ -577,13 +600,13 @@ function getSignalingServer() {
 }
 
 /**
- * Generate random Room id
+ * Generate random Room id  / 随机生成房间id
  * @return Room Id
  */
 function getRoomId() {
     // skip /join/
     let roomId = location.pathname.substring(6);
-    // if not specified room id, create one random
+    // if not specified room id, create one random / 如果没有指定房间id，就随机创建一个
     if (roomId == '') {
         roomId = makeId(12);
         const newurl = signalingServer + '/join/' + roomId;
@@ -593,7 +616,7 @@ function getRoomId() {
 }
 
 /**
- * Generate random Id
+ * Generate random Id / 生成随机id
  * @param {*} length
  * @returns random id
  */
@@ -608,7 +631,7 @@ function makeId(length) {
 }
 
 /**
- * Check if there is peer connections
+ * Check if there is peer connections 、 检查是否有同伴连接
  * @return true, false otherwise
  */
 function thereIsPeerConnections() {
@@ -617,7 +640,7 @@ function thereIsPeerConnections() {
 }
 
 /**
- * On body load Get started
+ * On body load Get started  、 身体负荷开始
  */
 function initClientPeer() {
     setTheme(mirotalkTheme);
@@ -630,7 +653,7 @@ function initClientPeer() {
     console.log('Connecting to signaling server');
     signalingSocket = io(signalingServer);
 
-    // on receiving data from signaling server...
+    // on receiving data from signaling server... 、 从信令服务器接收数据…
     signalingSocket.on('connect', handleConnect);
     signalingSocket.on('roomIsLocked', handleRoomLocked);
     signalingSocket.on('roomStatus', handleRoomStatus);
@@ -654,6 +677,9 @@ function initClientPeer() {
  * Send async data to signaling server (server.js)
  * @param {*} msg msg to send to signaling server
  * @param {*} config JSON data to send to signaling server
+ * *将异步数据发送到信令服务器（Server.js）
+ * * @param {*} msg msg发送到信令服务器
+ * * @param {*}配置JSON数据以发送给信令服务器
  */
 async function sendToServer(msg, config = {}) {
     await signalingSocket.emit(msg, config);
@@ -662,6 +688,8 @@ async function sendToServer(msg, config = {}) {
 /**
  * Connected to Signaling Server. Once the user has given us access to their
  * microphone/cam, join the channel and start peering up
+ * 已连接到信令服务器。一旦用户允许我们访问他们的
+ * 麦克风/摄像机，加入频道，开始向上窥视
  */
 function handleConnect() {
     console.log('Connected to signaling server');
@@ -673,7 +701,8 @@ function handleConnect() {
 }
 
 /**
- * set your name for the conference
+ * set your name for the conference 
+ * 为会议定下你的名字
  */
 function whoAreYou() {
     playSound('newMessage');
@@ -734,7 +763,7 @@ function whoAreYou() {
 }
 
 /**
- * join to chennel and send some peer info
+ * 加入频道并发送一些同伴信息
  */
 function joinToChannel() {
     console.log('join to channel', roomId);
@@ -751,7 +780,7 @@ function joinToChannel() {
 }
 
 /**
- * welcome message
+ * welcome message  、 欢迎信息
  */
 function welcomeUser() {
     const myRoomUrl = window.location.href;
@@ -796,6 +825,7 @@ function welcomeUser() {
 /**
  * When we join a group, our signaling server will send out 'addPeer' events to each pair of users in the group (creating a fully-connected graph of users,
  * ie if there are 6 people in the channel you will connect directly to the other 5, so there will be a total of 15 connections in the network).
+ * *当我们加入一个团体,信令服务器将发送“addPeer”事件组中每一对用户(用户创建一个全连通图,即如果有6人在英吉利海峡将直接连接到其他5,所以将会有一个总15连接网络)。
  *
  * @param {*} config
  */
@@ -809,6 +839,7 @@ function handleAddPeer(config) {
 
     if (peer_id in peerConnections) {
         // This could happen if the user joins multiple channels where the other peer is also in.
+        // 如果用户加入了其他伙伴所在的多个通道，就可能发生这种情况
         console.log('Already connected to peer', peer_id);
         return;
     }
@@ -875,7 +906,7 @@ function handleAddTracks(peer_id) {
 }
 
 /**
- * Secure RTC Data Channel
+ * Secure RTC Data Channel 安全RTC数据通道
  * https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel
  * https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createDataChannel
  * https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/ondatachannel
@@ -914,6 +945,7 @@ function handleRTCDataChannels(peer_id) {
 /**
  * Only one side of the peer connection should create the offer, the signaling server picks one to be the offerer.
  * The other user will get a 'sessionDescription' event and will create an offer, then send back an answer 'sessionDescription' to us
+ * 只有同伴连接的一方应该创建报价，信令服务器选择其中一方作为报价方。*其他用户将获得一个'sessionDescription'事件，并创建一个offer，然后将一个应答'sessionDescription'返回给我们
  *
  * @param {*} peer_id
  */
@@ -947,6 +979,7 @@ function handleRtcOffer(peer_id) {
 /**
  * Peers exchange session descriptions which contains information about their audio / video settings and that sort of stuff. First
  * the 'offerer' sends a description to the 'answerer' (with type "offer"), then the answerer sends one back (with type "answer").
+ * *同伴交换会话描述，其中包含他们的音频/视频设置和类似的东西的信息。首先，“提供者”发送一个描述给“回答者”(类型为“offer”)，然后回答者发送一个返回(类型为“answer”)。
  *
  * @param {*} config
  */
@@ -1000,6 +1033,7 @@ function handleSessionDescription(config) {
  * The offerer will send a number of ICE Candidate blobs to the answerer so they
  * can begin trying to find the best path to one another on the net.
  *
+ * *要约器将发送一些冰候选人Blob到答题器，因此它们可以开始尝试在网上找到彼此的最佳路径。
  * @param {*} config
  */
 function handleIceCandidate(config) {
@@ -1014,6 +1048,7 @@ function handleIceCandidate(config) {
 /**
  * Disconnected from Signaling Server. Tear down all of our peer connections
  * and remove all the media divs when we disconnect from signaling server
+ * 与信令服务器断开连接。拆除所有同行连接*并在断开与信令服务器的连接时删除所有媒体divs
  */
 function handleDisconnect() {
     console.log('Disconnected from signaling server');
@@ -1036,7 +1071,7 @@ function handleDisconnect() {
  * telling them to trash the media channels they have open for those that peer. If it was this client that left a channel,
  * they'll also receive the removePeers. If this client was disconnected, they wont receive removePeers, but rather the
  * signaling_socket.on('disconnect') code will kick in and tear down all the peer sessions.
- *
+ **当用户离开频道（或与信令服务器断开连接）时，每个人都将收到“removepeer”的消息*告诉他们删除它们对对等方向的媒体频道进行扫描。如果是此客户端留下频道，它们也会收到removepeers。如果此客户端已断开连接，则它们不会接收removepeers，而是* signaling_socket.on（'disconnect'）代码将启动并拆除所有同行会话。
  * @param {*} config
  */
 function handleRemovePeer(config) {
@@ -1219,13 +1254,14 @@ function setButtonsBarPosition(position) {
 /**
  * Setup local media stuff. Ask user for permission to use the computers microphone and/or camera,
  * attach it to an <audio> or <video> tag if they give us access.
+ * *设置本地媒体内容。请求用户允许使用电脑麦克风和/或摄像头，*如果他们允许我们访问，将其附在<audio>或<video>标签上。
  * https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
  *
  * @param {*} callback
  * @param {*} errorback
  */
 function setupLocalMedia(callback, errorback) {
-    // if we've already been initialized do nothing
+    // if we've already been initialized do nothing 、 如果我们已经初始化了，什么也不做
     if (localMediaStream != null) {
         if (callback) callback();
         return;
@@ -1264,7 +1300,7 @@ function setupLocalMedia(callback, errorback) {
 } // end [setup_local_stream]
 
 /**
- * Load Local Media Stream obj
+ * Load Local Media Stream obj 加载本地媒体流对象
  * @param {*} stream
  */
 function loadLocalMedia(stream) {
@@ -1274,11 +1310,11 @@ function loadLocalMedia(stream) {
 
     localMediaStream = stream;
 
-    // local video elemets
+    // local video elemets 本地视频elemets
     const videoWrap = document.createElement('div');
     const localMedia = document.createElement('video');
 
-    // handle my peer name video audio status
+    // handle my peer name video audio status  处理我的同伴名字，视频，音频，状态
     const myStatusMenu = document.createElement('div');
     const myCountTimeImg = document.createElement('i');
     const myCountTime = document.createElement('p');
@@ -1381,13 +1417,13 @@ function loadLocalMedia(stream) {
 }
 
 /**
- * Load Remote Media Stream obj
+ * Load Remote Media Stream obj 、加载远程视频媒体流
  * @param {*} stream
  * @param {*} peers
  * @param {*} peer_id
  */
 function loadRemoteMediaStream(stream, peers, peer_id) {
-    // get data from peers obj
+    // get data from peers obj 从peers obj获取数据
     let peer_name = peers[peer_id]['peer_name'];
     let peer_video = peers[peer_id]['peer_video'];
     let peer_audio = peers[peer_id]['peer_audio'];
@@ -1408,7 +1444,7 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
     const remoteVideoStatusIcon = document.createElement('button');
     const remoteAudioStatusIcon = document.createElement('button');
     const remotePrivateMsgBtn = document.createElement('button');
-    const remoteYoutubeBtnBtn = document.createElement('button');
+    // const remoteYoutubeBtnBtn = document.createElement('button');
     const remotePeerKickOut = document.createElement('button');
     const remoteVideoFullScreenBtn = document.createElement('button');
     const remoteVideoAvatarImage = document.createElement('img');
@@ -1480,7 +1516,7 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
     remoteStatusMenu.appendChild(remoteHandStatusIcon);
     remoteStatusMenu.appendChild(remoteVideoStatusIcon);
     remoteStatusMenu.appendChild(remoteAudioStatusIcon);
-    remoteStatusMenu.appendChild(remoteYoutubeBtnBtn);
+    // remoteStatusMenu.appendChild(remoteYoutubeBtnBtn);
     remoteStatusMenu.appendChild(remotePrivateMsgBtn);
     remoteStatusMenu.appendChild(remotePeerKickOut);
     remoteStatusMenu.appendChild(remoteVideoFullScreenBtn);
@@ -1533,7 +1569,7 @@ function loadRemoteMediaStream(stream, peers, peer_id) {
 }
 
 /**
- * Log stream settings info
+ * Log stream settings info 日志流设置信息
  * @param {*} name
  * @param {*} stream
  */
@@ -1551,7 +1587,7 @@ function logStreamSettingsInfo(name, stream) {
 }
 
 /**
- * Resize video elements
+ * Resize video elements 调整视频元素大小
  */
 function resizeVideos() {
     const numToString = ['', 'one', 'two', 'three', 'four', 'five', 'six'];
@@ -1562,7 +1598,7 @@ function resizeVideos() {
 }
 
 /**
- * Refresh video - chat image avatar on name changes
+ * Refresh video - chat image avatar on name changes 刷新视频 - 聊天图像头像在名称上更改
  * https://eu.ui-avatars.com/
  *
  * @param {*} videoAvatarImageId element
@@ -1579,7 +1615,7 @@ function setPeerAvatarImgName(videoAvatarImageId, peerName) {
 }
 
 /**
- * Set Chat avatar image by peer name
+ * Set Chat avatar image by peer name 通过同伴名称设置聊天头像图像
  * @param {*} avatar left/right
  * @param {*} peerName my/friends
  */
@@ -1602,6 +1638,7 @@ function setPeerChatAvatarImgName(avatar, peerName) {
  * On video player click, go on full screen mode ||
  * On button click, go on full screen mode.
  * Press Esc to exit from full screen mode, or click again.
+ * 在视频播放器点击，去全屏模式|| *在按钮点击，去全屏模式。*按“Esc”退出全屏模式，或再次单击。
  *
  * @param {*} videoId
  * @param {*} videoFullScreenBtnId
@@ -1611,7 +1648,7 @@ function handleVideoPlayerFs(videoId, videoFullScreenBtnId, peer_id = null) {
     let videoPlayer = getId(videoId);
     let videoFullScreenBtn = getId(videoFullScreenBtnId);
 
-    // handle Chrome Firefox Opera Microsoft Edge videoPlayer ESC
+    // handle Chrome Firefox Opera Microsoft Edge videoPlayer ESC  
     videoPlayer.addEventListener('fullscreenchange', (e) => {
         // if Controls enabled, or document on FS do nothing
         if (videoPlayer.controls || isDocumentOnFullScreen) return;
@@ -1711,7 +1748,7 @@ function handleVideoPlayerFs(videoId, videoFullScreenBtnId, peer_id = null) {
 }
 
 /**
- * Start talk time
+ * Start talk time 开始通话时间
  */
 function startCountTime() {
     countTime.style.display = 'inline';
@@ -1723,7 +1760,7 @@ function startCountTime() {
 }
 
 /**
- * Return time to string
+ * Return time to string 返回时间到字符串
  * @param {*} time
  */
 function getTimeToString(time) {
@@ -1740,7 +1777,7 @@ function getTimeToString(time) {
 }
 
 /**
- * Handle WebRTC left buttons
+ * Handle WebRTC left buttons 处理WebRTC左按钮
  */
 function manageLeftButtons() {
     // setShareRoomBtn();
@@ -1763,6 +1800,7 @@ function manageLeftButtons() {
 
 /**
  * Copy - share room url button click event
+ * 复制-共享房间url按钮点击事件
  */
 // function setShareRoomBtn() {
 //     shareRoomBtn.addEventListener('click', async(e) => {
@@ -1772,6 +1810,7 @@ function manageLeftButtons() {
 
 /**
  * Audio mute - unmute button click event
+ * 音频静音-取消静音按钮单击事件
  */
 function setAudioBtn() {
     audioBtn.addEventListener('click', (e) => {
@@ -1781,6 +1820,7 @@ function setAudioBtn() {
 
 /**
  * Video hide - show button click event
+ * 视频隐藏-显示按钮点击事件
  */
 function setVideoBtn() {
     videoBtn.addEventListener('click', (e) => {
@@ -1790,6 +1830,7 @@ function setVideoBtn() {
 
 /**
  * Check if can swap or not the cam, if yes show the button else hide it
+ * 手机切换前后摄像头
  */
 function setSwapCameraBtn() {
     navigator.mediaDevices.enumerateDevices().then((devices) => {
@@ -1806,6 +1847,7 @@ function setSwapCameraBtn() {
 
 /**
  * Check if i can share the screen, if yes show button else hide it
+ * 检查我是否可以共享屏幕，如果是显示按钮else隐藏它
  */
 function setScreenShareBtn() {
     if (!isMobileDevice && (navigator.getDisplayMedia || navigator.mediaDevices.getDisplayMedia)) {
@@ -1818,7 +1860,7 @@ function setScreenShareBtn() {
 }
 
 /**
- * Start - Stop Stream recording
+ * Start - Stop Stream recording 启动 - 停止流录制
  */
 function setRecordStreamBtn() {
     recordStreamBtn.addEventListener('click', (e) => {
@@ -1831,7 +1873,7 @@ function setRecordStreamBtn() {
 }
 
 /**
- * Full screen button click event
+ * Full screen button click event 全屏按钮点击事件
  */
 function setFullScreenBtn() {
     if (DetectRTC.browser.name != 'Safari') {
@@ -1860,9 +1902,10 @@ function setFullScreenBtn() {
 
 /**
  * Chat room buttons click event
+ * 聊天室按钮点击事件
  */
 function setChatRoomBtn() {
-    // adapt chat room size for mobile
+    // adapt chat room size for mobile 为移动设备调整聊天室的大小
     setChatRoomForMobile();
 
     // open hide chat room
@@ -1888,7 +1931,7 @@ function setChatRoomBtn() {
         }
     });
 
-    // show msger participants section
+    // show msger participants section  显示msger参与者部分
     msgerCPBtn.addEventListener('click', (e) => {
         if (!thereIsPeerConnections()) {
             userLog('info', '未检测到参与者');
@@ -1897,17 +1940,17 @@ function setChatRoomBtn() {
         msgerCP.style.display = 'flex';
     });
 
-    // hide msger participants section
+    // hide msger participants section  隐藏msger参与者部分
     msgerCPCloseBtn.addEventListener('click', (e) => {
         msgerCP.style.display = 'none';
     });
 
-    // clean chat messages
+    // clean chat messages 清除聊天记录
     msgerClean.addEventListener('click', (e) => {
         cleanMessages();
     });
 
-    // save chat messages to file
+    // save chat messages to file  保存聊天记录
     msgerSaveBtn.addEventListener('click', (e) => {
         if (chatMessages.length != 0) {
             downloadChatMsgs();
@@ -1916,7 +1959,7 @@ function setChatRoomBtn() {
         userLog('info', 'No chat messages to save');
     });
 
-    // close chat room - show left button and status menu if hide
+    // close chat room - show left button and status menu if hide 关闭聊天室-显示左键和状态菜单，如果隐藏
     msgerClose.addEventListener('click', (e) => {
         hideChatRoomAndEmojiPicker();
         showButtonsBarAndMenu();
@@ -1927,7 +1970,7 @@ function setChatRoomBtn() {
     //     sendVideoUrl();
     // });
 
-    // Execute a function when the user releases a key on the keyboard
+    // Execute a function when the user releases a key on the keyboard 当用户释放键盘上的一个键时执行一个函数
     msgerInput.addEventListener('keyup', (e) => {
         // Number 13 is the "Enter" key on the keyboard
         if (e.keyCode === 13) {
@@ -1944,7 +1987,7 @@ function setChatRoomBtn() {
         }
     };
 
-    // chat send msg
+    // chat send msg 发送信息
     msgerSendBtn.addEventListener('click', (e) => {
         // prevent refresh page
         e.preventDefault();
@@ -1953,7 +1996,7 @@ function setChatRoomBtn() {
 }
 
 /**
- * Emoji picker chat room button click event
+ * Emoji picker chat room button click event 表情符号选择聊天室按钮点击事件
  */
 function setChatEmojiBtn() {
     msgerEmojiBtn.addEventListener('click', (e) => {
@@ -1971,7 +2014,7 @@ function setChatEmojiBtn() {
 }
 
 /**
- * Set my hand button click event
+ * Set my hand button click event 设置我的手按钮点击事件
  */
 function setMyHandBtn() {
     myHandBtn.addEventListener('click', async(e) => {
@@ -2048,10 +2091,10 @@ function setMyWhiteboardBtn() {
 }
 
 /**
- * File Transfer button event click
+ * File Transfer button event click  文件传输按钮事件单击
  */
 function setMyFileShareBtn() {
-    // make send file div draggable
+    // make send file div draggable 使发送文件div可拖动
     if (!isMobileDevice) dragElement(getId('sendFileDiv'), getId('imgShare'));
 
     fileShareBtn.addEventListener('click', (e) => {
@@ -2064,7 +2107,7 @@ function setMyFileShareBtn() {
 }
 
 /**
- * My settings button click event
+ * My settings button click event 我的设置按钮点击事件
  */
 function setMySettingsBtn() {
     mySettingsBtn.addEventListener('click', (e) => {
@@ -2094,7 +2137,7 @@ function setMySettingsBtn() {
 // }
 
 /**
- * Leave room button click event
+ * Leave room button click event 离开房间点击事件
  */
 function setLeaveRoomBtn() {
     leaveRoomBtn.addEventListener('click', (e) => {
@@ -2214,7 +2257,7 @@ function setupVideoUrlPlayer() {
 }
 
 /**
- * Refresh Local media audio video in - out
+ * Refresh Local media audio video in - out 刷新本地媒体音频视频输入
  */
 function refreshLocalMedia() {
     // some devices can't swap the video track, if already in execution.
@@ -2225,7 +2268,7 @@ function refreshLocalMedia() {
 }
 
 /**
- * Get audio - video constraints
+ * Get audio - video constraints  获取音频 - 视频约束
  * @returns constraints
  */
 function getAudioVideoConstraints() {
@@ -2337,7 +2380,7 @@ function changeAudioDestination() {
 }
 
 /**
- * Attach audio output device to video element using device/sink ID.
+ * Attach audio output device to video element using device/sink ID.  使用设备/接收器ID将音频输出设备附加到视频元素
  * @param {*} element
  * @param {*} sinkId
  */
@@ -2362,7 +2405,7 @@ function attachSinkId(element, sinkId) {
 }
 
 /**
- * Got Stream and append to local media
+ * Got Stream and append to local media  得到了流并追加到当地媒体
  * @param {*} stream
  */
 function gotStream(stream) {
@@ -2377,13 +2420,13 @@ function gotStream(stream) {
 }
 
 /**
- * Get audio-video Devices and show it to select box
+ * Get audio-video Devices and show it to select box  获取音视频设备并将其显示到选择框中
  * https://webrtc.github.io/samples/src/content/devices/input-output/
  * https://github.com/webrtc/samples/tree/gh-pages/src/content/devices/input-output
  * @param {*} deviceInfos
  */
 function gotDevices(deviceInfos) {
-    // Handles being called several times to update labels. Preserve values.
+    // Handles being called several times to update labels. Preserve values. 句柄被多次调用以更新标签。保留值
     const values = selectors.map((select) => select.value);
     selectors.forEach((select) => {
         while (select.firstChild) {
@@ -2445,7 +2488,7 @@ function handleError(err) {
 }
 
 /**
- * AttachMediaStream stream to element
+ * AttachMediaStream stream to element 将MediaStream流附加到元素
  * @param {*} element
  * @param {*} stream
  */
@@ -2459,6 +2502,9 @@ function attachMediaStream(element, stream) {
  * Show left buttons & status menù for 10 seconds on body mousemove
  * if mobile and chatroom open do nothing return
  * if mobile and mySettings open do nothing return
+ * *显示左键和状态menù为10秒的身体鼠标移动
+ * *如果移动和聊天室打开做什么也不返回
+ * *如果移动和我的设置打开做什么也不返回
  */
 function showButtonsBarAndMenu() {
     if (isButtonsVisible || (isMobileDevice && isChatRoomVisible) || (isMobileDevice && isMySettingsVisible)) return;
@@ -2473,7 +2519,8 @@ function showButtonsBarAndMenu() {
 }
 
 /**
- * Copy room url to clipboard and share it with navigator share if supported
+ * Copy room url to clipboard and share it with navigator share if supported 
+ * 将房间URL复制到剪贴板，如果支持，请使用导航器共享分享
  * https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share
  */
 async function shareRoomUrl() {
@@ -2560,7 +2607,7 @@ function makeRoomQR() {
 }
 
 /**
- * Copy Room URL to clipboard
+ * Copy Room URL to clipboard 复制房间url到剪贴板
  */
 function copyRoomURL() {
     let roomURL = window.location.href;
@@ -2587,7 +2634,7 @@ function shareRoomByEmail(message) {
 }
 
 /**
- * Handle Audio ON - OFF
+ * Handle Audio ON - OFF 处理音频开关
  * @param {*} e event
  * @param {*} init bool true/false
  */
@@ -2609,7 +2656,7 @@ function handleAudio(e, init) {
 }
 
 /**
- * Handle Video ON - OFF
+ * Handle Video ON - OFF 处理视频开关
  * @param {*} e event
  * @param {*} init bool true/false
  */
@@ -2659,21 +2706,21 @@ function swapCamera() {
 }
 
 /**
- * Stop Local Video Track
+ * Stop Local Video Track  停止本地视频跟踪
  */
 function stopLocalVideoTrack() {
     localMediaStream.getVideoTracks()[0].stop();
 }
 
 /**
- * Stop Local Audio Track
+ * Stop Local Audio Track  停止本地音频跟踪
  */
 function stopLocalAudioTrack() {
     localMediaStream.getAudioTracks()[0].stop();
 }
 
 /**
- * Enable - disable screen sharing
+ * Enable - disable screen sharing  启用-禁用屏幕共享
  * https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getDisplayMedia
  */
 function toggleScreenSharing() {
@@ -2708,7 +2755,7 @@ function toggleScreenSharing() {
 }
 
 /**
- * Set Screen Sharing Status
+ * Set Screen Sharing Status  设置屏幕共享状态
  * @param {*} status
  */
 function setScreenSharingStatus(status) {
@@ -2744,7 +2791,7 @@ function setMyVideoStatusTrue() {
 }
 
 /**
- * Enter - esc on full screen mode
+ * Enter - esc on full screen mode  在全屏模式下输入- esc
  * https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API
  */
 function toggleFullScreen() {
@@ -2769,7 +2816,7 @@ function toggleFullScreen() {
 }
 
 /**
- * Refresh my stream changes to connected peers in the room
+ * Refresh my stream changes to connected peers in the room 刷新我的流更改到房间中已连接的同伴
  * @param {*} stream
  * @param {*} localAudioTrackChange true or false(default)
  */
@@ -2796,7 +2843,7 @@ function refreshMyStreamToPeers(stream, localAudioTrackChange = false) {
 }
 
 /**
- * Refresh my local stream
+ * Refresh my local stream 刷新本地流
  * @param {*} stream
  * @param {*} localAudioTrackChange true or false(default)
  */
@@ -2832,6 +2879,9 @@ function refreshMyLocalStream(stream, localAudioTrackChange = false) {
      * When you stop the screen sharing, on default i turn back to the webcam with video stream ON.
      * If you want the webcam with video stream OFF, just disable it with the button (关闭视频),
      * before to stop the screen sharing.
+     * *当您停止屏幕共享时，默认情况下，我将带回网络摄像头，并使用视频流。
+     * *如果您希望关闭视频流的网络摄像头，只需用按钮（关闭视频），
+     * *之前禁用它以停止屏幕共享。
      */
     if (myVideoStatus === false) localMediaStream.getVideoTracks()[0].enabled = false;
 }
@@ -2919,7 +2969,8 @@ function startStreamRecording() {
 }
 
 /**
- * Notify me if someone start to recording they screen + audio
+ * Notify me if someone start to recording they screen + audio  
+ * 通知我如果有人开始录制他们的屏幕+音频
  * @param {*} from peer_name
  * @param {*} action Started Stopped
  */
